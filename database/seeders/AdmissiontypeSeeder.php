@@ -42,7 +42,6 @@ class AdmissiontypeSeeder extends Seeder
             ['name' => 'تحويل -خاص'],
             ['name' => 'تعليم عن بعد'],
             ['name' => 'ثاني'],
-            ['name' => 'ثاني'],
             
             ];
     

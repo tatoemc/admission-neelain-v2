@@ -9,6 +9,8 @@ use App\Models\Doc;
 use App\Models\Faculty;
 use App\Models\Dept;
 use App\Models\Degree;
+use App\Models\Admissiontype; 
+use App\Models\Gender; 
 
 class Student extends Model
 {
@@ -31,6 +33,14 @@ class Student extends Model
     public function degree()
     {
         return $this->belongsTo(Degree::class);
+    }
+    public function admissiontype()
+    {
+        return $this->belongsTo(Admissiontype::class);
+    }
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
     }
 
 

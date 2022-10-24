@@ -17,25 +17,25 @@ Route::get('/', function () {
     return view('auth.login'); 
 });
 
-// StudentController
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('faculties','FacultyController');   //
 Route::resource('depts','DeptController');
 Route::resource('degrees','DegreeController');
 Route::resource('admissiontypes','AdmissiontypeController');
+Route::resource('docs','DocController'); 
+Route::get('download/{id}', 'DocController@get_file')->name('download');
 
+// StudentController
+Route::get('/getdepts/{id}','StudentController@getdepts')->name('getdepts');
 Route::resource('students','StudentController'); 
 Route::post('/import','StudentController@import')->name('import');
-Route::resource('docs','DocController'); 
-Route::get('download/{id}', 'DocController@get_file')->name('download'); 
-
+Route::get('/export', 'StudentController@export');
+Route::get('/GetExportView', 'StudentController@GetExportView');
 Route::post('search', 'StudentController@search');
-
 Route::get('/GetSearchView','StudentController@GetSearchView')->name('GetSearchView'); 
 Route::post('search', 'StudentController@search');
-//Route::post('/search','StudentController@search')->name('search'); 
-//Route::post('/details','StudentController@details')->name('details'); 
             
  
 

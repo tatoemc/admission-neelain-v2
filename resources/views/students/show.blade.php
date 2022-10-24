@@ -114,6 +114,10 @@
                         
                         <tbody>
                             <tr>
+                                <td>النوع</td>
+                                <td>{{ $student->gender->name }}</td>
+                            </tr>
+                            <tr>
                                 <td>الرقم الجامعي</td>
                                 <td>{{ $student->frmno }}</td>
                             </tr>
@@ -127,11 +131,11 @@
                             </tr>
                             <tr>
                                 <td>نوع القبول</td>
-                                <td>{{ $student->admission_type }}</td>
+                                <td>{{ $student->admissiontype->name }}</td> 
                             </tr>
                             <tr>
                                 <td>نوع الدراسة</td>
-                                <td>{{ $student->study_type }}</td>
+                                <td>{{ $student->degree->name }}</td>
                             </tr>
                             <tr>
                                 <td>المدرسة الثانوية</td>

@@ -92,7 +92,7 @@
                     <table class="table table-hover" id="example1" data-page-length='50' style=" text-align: center;">
                         <thead>
                             <tr>
-                                <th class="wd-10p border-bottom-0">#</th>
+                                <th class="wd-10p border-bottom-0">رقم القسم</th>
                                 <th class="wd-15p border-bottom-0">اسم القسم</th>
                                 <th class="wd-10p border-bottom-0">اسم الكلية</th>
                                 <th class="wd-10p border-bottom-0">العمليات</th>
@@ -101,7 +101,7 @@
                         <tbody>
                             @foreach ($depts as $index => $dept)
                                 <tr>
-                                    <td>{{ $index+1 }}</td>
+                                    <td>{{ $dept->id }}</td>
                                     <td>{{ $dept->name }}</td>
                                     <td>{{ $dept->faculty->name }}</td>
                                     <td>

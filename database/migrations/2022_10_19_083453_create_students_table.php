@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('SCHS');
             $table->string('N_FACS');
             $table->string('ENTS');
-            $table->string('faculty');
+            $table->string('old_faculty');
             $table->string('dept_name'); 
             $table->softDeletes();
             $table->timestamps();

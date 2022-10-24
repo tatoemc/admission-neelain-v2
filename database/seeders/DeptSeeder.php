@@ -150,8 +150,6 @@ class DeptSeeder extends Seeder
             ['name' => 'قانون - مدني','faculty_id'=>'3'],
             ['name' => 'قانون - جنائي','faculty_id'=>'3'],
             ['name' => 'قانون - دولي','faculty_id'=>'3'],
-
-
             ['name' => 'القسـم العام','faculty_id'=>'8'],
 
             ['name' => 'تجارة - ادارة اعمال','faculty_id'=>'15'],
@@ -336,7 +334,7 @@ class DeptSeeder extends Seeder
 
            // ['name' => 'تجريب','faculty_id'=>'26'],
             ['name' => 'الصحة العامة - مركز فيوتشر','faculty_id'=>'5'],
-
+            ['name' => 'نظم معلومات','faculty_id'=>'1'],
             /*
             ['name' => '','faculty_id'=>'13'],
             ['name' => '','faculty_id'=>'13'],

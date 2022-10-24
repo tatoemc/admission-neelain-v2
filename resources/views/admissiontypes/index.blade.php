@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-    البرامج
+    انواع القبول
 @stop
 
 <!-- Internal Data table css -->
@@ -21,8 +21,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">البرامج</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
-                البرامج</span>
+            <h4 class="content-title mb-0 my-auto">انواع القبول</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
+                انواع القبول</span>
         </div>
     </div>
 </div>
@@ -80,10 +80,10 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-header pb-0">
-                <div class="col-sm-1 col-md-2">
-                    @can('اضافة قسم')
+                <div class="col-sm-2 col-md-2">
+                    @can('اضافة القبول')
                         <a class="modal-effect btn btn-lg btn-block btn-primary" data-effect="effect-scale"
-                        data-toggle="modal" href="#add">أضافة قسم</a>
+                        data-toggle="modal" href="#add">أضافة نوع قبول</a>
                     @endcan
                 </div>
             </div>
@@ -93,8 +93,7 @@
                         <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">اسم القسم</th>
-                                <th class="wd-10p border-bottom-0">اسم الكلية</th>
+                                <th class="wd-15p border-bottom-0">اسم نوع القبول</th>
                                 <th class="wd-10p border-bottom-0">العمليات</th>
                             </tr>
                         </thead>
@@ -103,9 +102,8 @@
                                 <tr>
                                     <td>{{ $index+1 }}</td>
                                     <td>{{ $admissiontype->name }}</td>
-                                    <td>{{ $admissiontype->faculty->name }}</td>
-                                    <td>
-                                        @can('حذف قسم')
+                                    <td> 
+                                        @can('حذف القبول')
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                 data-admissiontype_id="{{ $admissiontype->id }}"
                                                 data-admissiontypename="{{ $admissiontype->name }}" data-toggle="modal"
@@ -127,7 +125,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">حذف المستخدم</h6><button aria-label="Close" class="close"
+                    <h6 class="modal-title">حذف نوع قبول</h6><button aria-label="Close" class="close"
                         data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <form action="{{ route('admissiontypes.destroy', 'test') }}" method="post">
@@ -152,7 +150,7 @@
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
 
-                    <h6 class="modal-title">اضافة قسم</h6><button aria-label="Close" class="close"
+                    <h6 class="modal-title">اضافة نوع قبول</h6><button aria-label="Close" class="close"
                         data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 
                 </div>
@@ -161,18 +159,8 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">اسم القسم</label>
+                            <label for="exampleInputEmail1">اسم نوع القبول</label>
                             <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">اسم الكلية</label>
-                            <select class="form-select" name="faculty_id">
-                                @foreach ($faculties as $faculty)
-                                    <option value="{{$faculty->id}}">{{$faculty->name }}</option>
-                                @endforeach
-    
-                            </select>
                         </div>
 
                         <div class="modal-footer">

@@ -58,7 +58,19 @@
                     {{ csrf_field() }}
 
                     <div class="">
-
+                        <div class="row row-sm mg-b-20">
+                            <div class="col-lg-6">
+                                <label class="form-label">الكلية</label>
+                                <select name="faculty_id" id="select-beast"
+                                    class="form-control  nice-select  custom-select">
+                                    <option value="" selected disabled> -- اختيار الكلية--</option>
+                                    @foreach ($faculties as $faculty)
+                                        <option value='{{ $faculty->id }}'> {{ $faculty->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                         
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6" id="fnWrapper">
                                 <label>اسم المستخدم: <span class="tx-danger">*</span></label>
@@ -90,20 +102,8 @@
                                 name="confirm-password" required="" type="password">
                         </div>
                     </div>
-
-                    <div class="row row-sm mg-b-20">
-                        <div class="col-lg-6">
-                            <label class="form-label">الكلية</label>
-                            <select name="faculty_id" id="select-beast"
-                                class="form-control  nice-select  custom-select">
-                                <option value="" selected disabled> -- اختيار الكلية--</option>
-                                @foreach ($faculties as $faculty)
-                                    <option value='{{ $faculty->id }}'> {{ $faculty->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
+ 
+                    
                     <div class="row mg-b-20">
                         <div class="col-xs-12 col-md-12">
                             <div class="form-group">

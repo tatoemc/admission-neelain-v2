@@ -38,7 +38,7 @@ class ImportStudent implements ToModel, WithStartRow
            'ENTS' => $row[7],
            'admissiontype_id'    => $row[8], 
            'degree_id'    => $row[9], 
-           'faculty'    => $row[10],
+           'old_faculty'    => $row[10],
            'dept_name'    => $row[11],
            'dept_id' => $row[12],
            'faculty_id' => $row[13],

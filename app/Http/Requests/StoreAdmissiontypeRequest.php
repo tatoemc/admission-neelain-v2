@@ -13,7 +13,7 @@ class StoreAdmissiontypeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class StoreAdmissiontypeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:admissiontypes',
         ];
     }
+    public function messages()
+    {
+        return [
+
+            'name.required' =>'يرجي ادخال  اسم نوع القبول ',
+            'name.unique' =>'اسم نوع القبول موجود بالفعل'
+        ];
+    }
+
+
+
 }

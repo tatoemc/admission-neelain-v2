@@ -143,7 +143,7 @@
             </div>
             </form>
         </div>
-    </div>
+    </div> 
     <!-- Add -->
     <div class="modal" id="add">
         <div class="modal-dialog" role="document">

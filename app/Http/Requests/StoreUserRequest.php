@@ -27,7 +27,6 @@ class StoreUserRequest extends FormRequest
          'name' => 'required',
          'email' => 'required|unique:users',
          'password' => 'required|same:confirm-password',
-         'faculty_id' => 'required',
          'roles_name' => 'required'
         ];
     }

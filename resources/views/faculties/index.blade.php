@@ -93,7 +93,7 @@
                     <table class="table table-hover" id="example1" data-page-length='50' style=" text-align: center;">
                         <thead>
                             <tr>
-                                <th class="wd-10p border-bottom-0">#</th>
+                                <th class="wd-10p border-bottom-0">رقم الكلية</th>
                                 <th class="wd-15p border-bottom-0">اسم الكلية</th>
                                 <th class="wd-10p border-bottom-0">العمليات</th>
                             </tr>
@@ -102,7 +102,7 @@
                          @if ($faculties->count() > 0)
                             @foreach ($faculties as $index => $faculty)
                                 <tr>
-                                    <td>{{ $index+1 }}</td>
+                                    <td>{{ $faculty->id }}</td>
                                     <td>{{ $faculty->name }}</td>
 
                                     <td>
@@ -154,7 +154,6 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-
                     <h6 class="modal-title">اضافة كليات</h6><button aria-label="Close" class="close"
                         data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 

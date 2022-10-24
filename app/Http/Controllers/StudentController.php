@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\Doc;
+use App\Models\Dept;
+use App\Models\Admissiontype;
+use App\Models\Degree;
+use App\Models\Faculty;
+use App\Models\Gender;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportStudent;
+use App\Exports\StudentsExport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Auth;
-
 
 class StudentController extends Controller
 {
@@ -62,6 +67,26 @@ class StudentController extends Controller
             catch (\Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
              }
+
+    }
+
+    public function GetExportView()
+    {
+        $faculties =  Faculty::all()->pluck('name','id');
+        return view ('students.export_students',compact('faculties'));
+
+    }
+
+    public function export(Request $request)
+    {
+        try {
+        //return Excel::download(new StudentsExport, 'students.xlsx');
+        return Excel::download(new StudentsExport($request->faculty_id,$request->dept), 'students.xlsx');
+        }
+        catch (\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+
 
     }
   
@@ -114,7 +139,7 @@ class StudentController extends Controller
         else
         {
            if ($request->frmno)
-           {
+           { 
             $students = Student::Where('faculty_id',Auth::user()->faculty_id)
             ->Where('frmno',$request->frmno)->paginate(10);
            }
@@ -131,11 +156,6 @@ class StudentController extends Controller
 
         }
 
-        
-
-
-
-
        } //end of try
     
       catch (\Exception $e){
@@ -145,14 +165,42 @@ class StudentController extends Controller
         return view ('students.search',compact('students'));
     }
 
+    public function getdepts($id)
+    {
+        
+      $dept = Dept::where('faculty_id',$id)->pluck('name','id');
+      return json_encode ($dept);
+      
+    } 
+
     public function edit(Student $student)
     {
-        //
+        $depts =  Dept::all();
+        $admissiontypes =  Admissiontype::all();
+        $degrees =  Degree::all();
+        $faculties =  Faculty::all()->pluck('name','id');
+        $genders =  Gender::all();
+        return view ('students.edit',compact('student','admissiontypes','degrees','faculties','genders','depts'));
     }
 
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+       
+        //dd($request->all());
+        $dept_id = $request->dept;
+        $student->update([
+            'frmno' => $request->frmno,
+            'N1' => $request->N1,
+            'N2' => $request->N2,
+            'N3' => $request->N3,
+            'N4' => $request->N4, 
+            'faculty_id' => $request->faculty_id,
+            'dept_id' => $dept_id,
+            'degree_id' => $request->degree_id,
+            'ENTS' => $request->ENTS,
+        ]);
+
+        return view ('students.show',compact('student'));
     }
 
   

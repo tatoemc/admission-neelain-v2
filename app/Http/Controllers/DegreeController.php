@@ -31,7 +31,7 @@ class DegreeController extends Controller
                 'name' => $request->name,
                 ]);
     
-                session()->flash('Add_dept');
+                session()->flash('Add_degree');
                 return redirect('/degrees');
                }
     

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
+use App\Models\Faculty;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -40,8 +41,9 @@ return view('users.show_users',compact('data'))
 */
 public function create()
 {
+  $faculties = Faculty::all();
 $roles = Role::pluck('name','name')->all();
-return view('users.Add_user',compact('roles'));
+return view('users.Add_user',compact('roles','faculties'));
 
 }
 /**
