@@ -148,7 +148,7 @@
                                             <a class="btn btn-sm btn-info" href="{{ route('students.edit',$student->id)}}"><i class="fa fa-edit"></i> تعديل</a>
                                             @endcan
                                             @can('عرض طالب')
-                                            <a class="btn btn-sm btn-info" href="{{ route('students.show',$student->id)}}"><i class="fa fa-eye"></i> تفاصيل</a>
+                                            <a class="btn btn-sm btn-success" href="{{ route('students.show',$student->id)}}"><i class="fa fa-eye"></i> تفاصيل</a>
                                             @endcan
                                             @can('حذف طالب')
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"

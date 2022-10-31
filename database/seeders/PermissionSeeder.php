@@ -19,6 +19,7 @@ class PermissionSeeder extends Seeder
 
             'طباعة',
             'بحث',
+            'عرض التقارير',
 
             'عرض ملف',
             'اضافة ملف',

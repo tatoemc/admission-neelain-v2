@@ -11,6 +11,7 @@ use App\Models\Student;
 class Dept extends Model
 {
     use HasFactory,SoftDeletes;
+    //protected $table = 'dept';
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 

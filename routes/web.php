@@ -36,6 +36,10 @@ Route::get('/GetExportView', 'StudentController@GetExportView');
 Route::post('search', 'StudentController@search');
 Route::get('/GetSearchView','StudentController@GetSearchView')->name('GetSearchView'); 
 Route::post('search', 'StudentController@search');
+
+Route::resource('reports','ReportsController');
+Route::post('GetReports','ReportsController@GetReports');
+Route::post('GetReportsResult','ReportsController@GetReportsResult');
             
  
 

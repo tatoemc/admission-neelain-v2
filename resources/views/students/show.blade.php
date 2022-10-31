@@ -113,10 +113,7 @@
                     <table class="table">
                         
                         <tbody>
-                            <tr>
-                                <td>النوع</td>
-                                <td>{{ $student->gender->name }}</td>
-                            </tr>
+                            
                             <tr>
                                 <td>الرقم الجامعي</td>
                                 <td>{{ $student->frmno }}</td>
@@ -150,6 +147,16 @@
                     </table>
 
                 </div>
+            <br><br><br><br>
+            <div class="row">
+                 هذا منا للافادة ،،
+            </div>
+
+            <br><br><br><br>
+            <div class="row">
+                 هذا منا للافادة ،،
+            </div>
+
             </div>
         </div>
 

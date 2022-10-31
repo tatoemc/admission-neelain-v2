@@ -11,12 +11,16 @@
     <!-- Scripts --> 
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
+    <!-- Fonts 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    -->
     <!-- Styles -->
-    
+    <style>
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cairo' !important;
+        }
+    </style>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>

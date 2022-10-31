@@ -69,6 +69,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-lg-6">
+                                <label class="form-label">نوع المستخدم</label>
+                                <select name="user_type" id="select-beast" class="form-control  nice-select  custom-select">
+                                    <option value='admin'>أدارة القبول</option>
+                                    <option value='admin'>القبول</option>
+                                    <option value='user'>مستخدم</option>
+                                </select>
+                            </div>
                         </div>
                          
                         <div class="row mg-b-20">

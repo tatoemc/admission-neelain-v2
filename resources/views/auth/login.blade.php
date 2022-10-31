@@ -27,13 +27,12 @@
                     <div class="container p-0">
                         <div class="row">
                            
-
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
                                     <div class="mb-5 d-flex"> <a href="{{ url('/' . ($page = 'Home')) }}"><img
-                                                src="{{ URL::asset('assets/img/brand/favicon.png') }}"
+                                                src="{{ URL::asset('assets/img/brand/logo.png') }}"
                                                 class="sign-favicon ht-40" alt="logo"></a>
-                                        <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28"><span>جامعة النيلين - نظام القبول</span></h1>
+                                        <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28"><span> نظام القبول</span></h1>
                                     </div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">

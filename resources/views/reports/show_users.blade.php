@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-    الاقسام
+    المستخدمين 
 @stop
 
 <!-- Internal Data table css -->
@@ -21,8 +21,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">الاقسام</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
-                الاقسام</span>
+            <h4 class="content-title mb-0 my-auto">المستخدمين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
+                المستخدمين</span>
         </div>
     </div>
 </div>
@@ -31,48 +31,10 @@
 
 @section('content')
 
-@if (session()->has('delete_dept'))
-<script>
-    window.onload = function() {
-        notif({
-            msg: "تم الحذف  بنجاح",
-            type: "success"
-        })
-    }
-</script>
-@endif
-
-@if (session()->has('Add_dept'))
-<script>
-    window.onload = function() {
-        notif({
-            msg: "تم الاضافة بنجاح",
-            type: "success"
-        })
-    }
-</script>
-@endif
-
-@if (session()->has('update_company'))
-<script>
-    window.onload = function() {
-        notif({
-            msg: "تم التعديل بنجاح",
-            type: "success"
-        })
-    }
-</script>
-@endif
-
-
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
 @endif
 
 <!-- row opened -->
@@ -81,9 +43,8 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="col-sm-1 col-md-2">
-                    @can('اضافة قسم')
-                        <a class="modal-effect btn btn-lg btn-block btn-primary" data-effect="effect-scale"
-                        data-toggle="modal" href="#add">أضافة قسم</a>
+                    @can('اضافة مستخدم')
+                        <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">اضافة مستخدم</a>
                     @endcan
                 </div>
             </div>
@@ -92,24 +53,38 @@
                     <table class="table table-hover" id="example1" data-page-length='50' style=" text-align: center;">
                         <thead>
                             <tr>
-                                <th class="wd-10p border-bottom-0">رقم القسم</th>
-                                <th class="wd-15p border-bottom-0">اسم القسم</th>
-                                <th class="wd-10p border-bottom-0">اسم الكلية</th>
+                                <th class="wd-10p border-bottom-0">#</th>
+                                <th class="wd-15p border-bottom-0">اسم المستخدم</th>
+                                <th class="wd-20p border-bottom-0">البريد الالكتروني</th>
+                                <th class="wd-15p border-bottom-0">نوع المستخدم</th>
                                 <th class="wd-10p border-bottom-0">العمليات</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($depts as $index => $dept)
+                            @foreach ($data as $key => $user)
                                 <tr>
-                                    <td>{{ $dept->id }}</td>
-                                    <td>{{ $dept->name }}</td>
-                                    <td>{{ $dept->faculty->name }}</td>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
                                     <td>
-                                        @can('حذف قسم')
+                                        @if (!empty($user->getRoleNames()))
+                                            @foreach ($user->getRoleNames() as $v)
+                                                <label class="badge badge-success">{{ $v }}</label>
+                                            @endforeach
+                                        @endif
+                                    </td>
+
+                                    <td>
+                                        @can('تعديل مستخدم')
+                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
+                                                title="تعديل"><i class="las la-pen"></i></a>
+                                        @endcan
+
+                                        @can('حذف مستخدم')
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                data-dept_id="{{ $dept->id }}"
-                                                data-deptname="{{ $dept->name }}" data-toggle="modal"
-                                                href="#modaldemo8" title="حذف"><i class="las la-trash"></i></a>
+                                                data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
+                                                data-toggle="modal" href="#modaldemo8" title="حذف"><i
+                                                    class="las la-trash"></i></a>
                                         @endcan
                                     </td>
                                 </tr>
@@ -122,7 +97,7 @@
     </div>
     <!--/div-->
 
-    <!-- Delete -->
+    <!-- Modal effects -->
     <div class="modal" id="modaldemo8">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
@@ -130,13 +105,13 @@
                     <h6 class="modal-title">حذف المستخدم</h6><button aria-label="Close" class="close"
                         data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="{{ route('depts.destroy', 'test') }}" method="post">
+                <form action="{{ route('users.destroy', 'test') }}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <p>هل انت متاكد من عملية الحذف ؟</p><br>
-                        <input type="hidden" name="dept_id" id="dept_id" value="">
-                        <input class="form-control" name="deptname" id="deptname" type="text" readonly>
+                        <input type="hidden" name="user_id" id="user_id" value="">
+                        <input class="form-control" name="username" id="username" type="text" readonly>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
@@ -146,49 +121,6 @@
             </form>
         </div>
     </div>
-    <!-- Add -->
-    <div class="modal" id="add">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-
-                    <h6 class="modal-title">اضافة قسم</h6><button aria-label="Close" class="close"
-                        data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('depts.store') }}" method="post" autocomplete="off">
-                        {{ csrf_field() }}
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">اسم القسم</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">اسم الكلية</label>
-                            <select class="form-control" name="faculty_id">
-                                @foreach ($faculties as $faculty)
-                                    <option value="{{$faculty->id}}">{{$faculty->name }}</option>
-                                @endforeach
-    
-                            </select>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">حفظ</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- End Basic modal -->
-
-
-    </div>
-
-
 </div>
 
 </div>
@@ -220,12 +152,13 @@
 <script>
     $('#modaldemo8').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
-        var dept_id = button.data('dept_id')
-        var deptname = button.data('deptname')
+        var user_id = button.data('user_id')
+        var username = button.data('username')
         var modal = $(this)
-        modal.find('.modal-body #dept_id').val(dept_id);
-        modal.find('.modal-body #deptname').val(deptname);
+        modal.find('.modal-body #user_id').val(user_id);
+        modal.find('.modal-body #username').val(username);
     })
+
 </script>
 
 
