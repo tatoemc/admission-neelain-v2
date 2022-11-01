@@ -69,7 +69,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
-                        <img src="{{ URL::asset('assets/img/brand/logo.png') }}" alt="logo">
+                        <img style="float: left; padding: 60px 0px 0px 0px;" src="{{ URL::asset('assets/img/brand/logo.png') }}" alt="logo">
+                        <img style="float: right" src="{{ URL::asset('assets/img/brand/Admission-logo.png') }}" alt="logo">
                     </div>
                 </div><br><br>
                 <div class="row">
@@ -148,16 +149,17 @@
 
                 </div>
             <br><br><br><br>
+            
+                    <center>هذا منا للأفادة ،،، </center>
+            
+
+            <br><br><br><br><br><br><br><br>
             <div class="row">
-                 هذا منا للافادة ،،
+                     عميد القبول و التسجيل : د/ {{ $user->name }}
             </div>
 
+            </div>
             <br><br><br><br>
-            <div class="row">
-                 هذا منا للافادة ،،
-            </div>
-
-            </div>
         </div>
 
 

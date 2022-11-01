@@ -38,9 +38,14 @@ Route::get('/GetSearchView','StudentController@GetSearchView')->name('GetSearchV
 Route::post('search', 'StudentController@search');
 
 Route::resource('reports','ReportsController');
-Route::post('GetReports','ReportsController@GetReports');
-Route::post('GetReportsResult','ReportsController@GetReportsResult');
-            
+Route::post('GetReportResult','ReportsController@GetReportResult');
+/*
+Route::get('GetDeptsViewReports','ReportsController@GetDeptsViewReports');
+Route::post('GetDeptsResult','ReportsController@GetDeptsResult');
+
+Route::get('GetFacultiesViewReports','ReportsController@GetFacultiesViewReports');
+Route::post('GetFacultiesResult','ReportsController@GetFacultiesResult');
+ */           
  
 
 Route::group(['middleware' => ['auth']], function() {

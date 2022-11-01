@@ -9,6 +9,7 @@ use App\Models\Admissiontype;
 use App\Models\Degree;
 use App\Models\Faculty;
 use App\Models\Gender;
+use App\Models\User;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Http\Request;
@@ -107,9 +108,9 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        
+        $user = User::where('user_type','dean')->first();
         $student = Student::where('id', $id)->first();
-        return view ('students.show',compact('student'));
+        return view ('students.show',compact('student','user'));
     }
 
     public function search(Request $request)

@@ -150,9 +150,7 @@
                             d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-5 7c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10zM4.59 11.59l-.59.58V4h11v7H5.17l-.58.59z" />
                     </svg><span class="side-menu__label">التقارير</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    
-                    <li><a class="slide-item" href="{{ route('reports.create') }}">عرض</a></li>
-                   
+                    <li><a class="slide-item" href="{{ route('reports.create') }}">التقارير</a></li>
                 </ul>
             </li>
             @endcan
@@ -171,6 +169,7 @@
                     <li><a class="slide-item" href="{{ route('users.index') }}">قائمة المستخدمين</a></li>
                     @can('اضافة مستخدم')
                     <li><a class="slide-item" href="{{ route('users.create') }}">انشاء مستخدم</a></li>
+                    <li><a class="slide-item" href="{{ route('users.create') }}">أضافة عميد القبول</a></li>
                     @endcan
                     @can('اضافة صلاحية')
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'roles')) }}">صلاحيات

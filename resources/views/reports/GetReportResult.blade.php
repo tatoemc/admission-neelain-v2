@@ -51,10 +51,11 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-lg-12 margin-tb">
-                    <div class="card-header bg-black"><button class="btn btn-primary  float-right mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button></div>
-                </div><br>
-                @if (isset($students))
-                <div class="table-responsive hoverable-table" id="print">
+                    <div class="card-header bg-black"><button class="btn btn-primary  float-right mt-3 mr-2" id="print_Button" onclick="printData()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button></div>
+                </div><br><br> <br>
+                
+                @if ($students->count() > 0)
+                <div class="table-responsive hoverable-table" id="printTable">
                     <table class="table table-hover" id="example1" data-page-length='50' style=" text-align: center;">
                         <thead>
                             <tr>
@@ -87,6 +88,7 @@
                     </table>
                     @endif
                 </div>
+                
             </div>
         </div>
     </div>
@@ -98,8 +100,6 @@
 <!-- main-content closed -->
 @endsection
 @section('js')
-
-
 <!-- Internal Nice-select js-->
 <script src="{{ URL::asset('assets/plugins/jquery-nice-select/js/jquery.nice-select.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/jquery-nice-select/js/nice-select.js') }}"></script>
@@ -129,6 +129,17 @@
         location.reload();
     }
 
+    function printData()
+{
+   var divToPrint=document.getElementById("printTable");
+   newWin= window.open("");
+   newWin.document.write(divToPrint.outerHTML);
+   newWin.print();
+   newWin.close();
+}
+
 </script>
+
+
 
 @endsection

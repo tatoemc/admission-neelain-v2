@@ -54,21 +54,32 @@ return view('users.Add_user',compact('roles','faculties'));
 */
 public function store(StoreUserRequest $request)
 {
-  try {
+  $user = User::where('user_type','dean')->first();
+  if($user->count() == 0)
+        {
+          try {
        
-       $validated = $request->validated();
+            $validated = $request->validated();
+     
+            $input = $request->except(['confirm-password' ]);
+            $input['password'] = Hash::make($input['password']);
+            $user = User::create($input);
+            $user->assignRole($request->input('roles_name'));
+            session()->flash('Add_user');
+             return redirect()->route('users.index');
+             }
+         
+            catch (\Exception $e){
+             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+             }
+        }
+        else
+        {
 
-       $input = $request->except(['confirm-password' ]);
-       $input['password'] = Hash::make($input['password']);
-       $user = User::create($input);
-       $user->assignRole($request->input('roles_name'));
-       session()->flash('Add_user');
-        return redirect()->route('users.index');
+          return redirect()->back()->withErrors(['error' => 'يوجد عميد للقبول و التسجيل يجب حذف العميد اولاً']);
+  
         }
-    
-       catch (\Exception $e){
-        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+
 }
 
 /**
