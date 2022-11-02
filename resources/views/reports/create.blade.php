@@ -96,8 +96,7 @@
                             </div>
                             <div class="col-lg-2">
                                 <label class="form-label">عام القبول</label>
-                                <input class="form-control fc-datepicker" name="year" placeholder="YYYY-MM-DD"
-                                type="text">
+                                {{ Form::selectYear('year', 1990, 2022) }}
                             </div>
 
                         </div>
@@ -161,15 +160,24 @@
         });
     });
 </script>
-<script>
-    var date = $('.fc-datepicker').datepicker({
-        changeMonth: false,
-            changeYear: true,
-            showButtonPanel: true,
-            yearRange: '1950:2022',
-       
-    }).val();
 
+
+<script type="text/javascript">
+    window.onload = function () {
+        //Reference the DropDownList.
+        var ddlYears = document.getElementById("year");
+ 
+        //Determine the Current Year.
+        var currentYear = (new Date()).getFullYear();
+ 
+        //Loop and add the Year values to DropDownList.
+        for (var i = 1950; i <= currentYear; i++) {
+            var option = document.createElement("OPTION");
+            option.innerHTML = i;
+            option.value = i;
+            ddlYears.appendChild(option);
+        }
+    };
 </script>
 
 @endsection
