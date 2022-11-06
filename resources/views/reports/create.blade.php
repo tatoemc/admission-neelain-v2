@@ -60,7 +60,7 @@
                     <div class="">
                         <div class="row row-sm mg-b-20">
                             <div class="col-lg-2">
-                                <label class="form-label">الكلية</label><span class="tx-danger">*</span>
+                                <label class="form-label"> <span class="tx-danger">*</span>الكلية</label>
                                 <select class="form-control" name="faculty_id" required>
                                     <option value="" selected disabled> -- اختيار الكلية--</option>
                                     @foreach ($faculties as $key => $value)
@@ -94,10 +94,17 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="col-lg-2">
-                                <label class="form-label">عام القبول</label>
-                                {{ Form::selectYear('year', 1990, 2022) }}
+                                <label class="form-label">العام</label>
+                                <select name="degree_id" id="select-beast" class="form-control  nice-select  custom-select">
+                                    <option value="" selected disabled> -- اختيار العام--</option>
+                                    <option value="2021" >2021</option>
+                                    <option value="2022" >2022</option>
+                                    <option value="2020" >2020</option>
+                                </select>
                             </div>
+                            
 
                         </div>
 
@@ -161,7 +168,7 @@
     });
 </script>
 
-
+<!--
 <script type="text/javascript">
     window.onload = function () {
         //Reference the DropDownList.
@@ -179,5 +186,5 @@
         }
     };
 </script>
-
+!-->
 @endsection

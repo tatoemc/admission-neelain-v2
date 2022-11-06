@@ -104,7 +104,7 @@ class StudentController extends Controller
     public function GetSearchView()
     {
         return view ('students.search');
-    }
+    } 
 
     public function show($id)
     {

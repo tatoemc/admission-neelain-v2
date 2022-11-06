@@ -152,12 +152,13 @@
             
                     <center>هذا منا للأفادة ،،، </center>
             
-
+ 
             <br><br><br><br><br><br><br><br>
+            @if (isset($user))
             <div class="row">
                      عميد القبول و التسجيل : د/ {{ $user->name }}
             </div>
-
+            @endif
             </div>
             <br><br><br><br>
         </div>

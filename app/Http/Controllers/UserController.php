@@ -55,8 +55,8 @@ return view('users.Add_user',compact('roles','faculties'));
 public function store(StoreUserRequest $request)
 {
   $user = User::where('user_type','dean')->first();
-  if($user->count() == 0)
-        {
+  //if($user->count() == 0)
+        
           try {
        
             $validated = $request->validated();
@@ -72,13 +72,11 @@ public function store(StoreUserRequest $request)
             catch (\Exception $e){
              return redirect()->back()->withErrors(['error' => $e->getMessage()]);
              }
-        }
-        else
-        {
+        
 
           return redirect()->back()->withErrors(['error' => 'يوجد عميد للقبول و التسجيل يجب حذف العميد اولاً']);
   
-        }
+      
 
 }
 

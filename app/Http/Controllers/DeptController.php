@@ -7,6 +7,8 @@ use App\Models\Faculty;
 use App\Http\Requests\StoreDeptRequest;
 use App\Http\Requests\UpdateDeptRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class DeptController extends Controller
 {
@@ -27,6 +29,7 @@ class DeptController extends Controller
     { 
         $depts =  Dept::all();
         $faculties =  Faculty::all();
+       
         return view ('depts.index',compact('depts','faculties'));
     }
 
