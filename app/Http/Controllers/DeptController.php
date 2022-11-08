@@ -76,12 +76,17 @@ class DeptController extends Controller
 
     public function destroy(Request $request)
     {
-        
+        try {
         $dept = Dept::where('id', $request->dept_id)->first();
         $dept->delete();
 
         session()->flash('delete_dept');
         return redirect('/depts');
+          }
+    
+           catch (\Exception $e){
+             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+           }
 
     }
 

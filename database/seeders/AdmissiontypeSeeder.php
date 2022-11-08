@@ -17,6 +17,7 @@ class AdmissiontypeSeeder extends Seeder
     public function run()
     {
         DB::table('admissiontypes')->delete();
+        
         $admissiontypes = [
             ['name' => 'عام'],
             ['name' => 'خاص'],
@@ -42,6 +43,17 @@ class AdmissiontypeSeeder extends Seeder
             ['name' => 'تحويل -خاص'],
             ['name' => 'تعليم عن بعد'],
             ['name' => 'ثاني'],
+            ['name' => 'عائدين نظامي بدون'],
+            ['name' => 'قبول بعد السنة الاولى'],
+            ['name' => 'وافدين عن بعد'],
+            ['name' => 'وافدين عن بعد بدون'],
+            ['name' => 'وافدين نظامي بدون'],
+            ['name' => 'بعد السنة الاولى نظامي بدون'],
+            ['name' => 'تحويل وافدين'],
+            ['name' => 'تجسير انتساب بدون'],
+            ['name' => 'تعليم مفتوح'],
+            ['name' => 'حتى العام89'],
+            ['name' => 'انتساب بدون'],
             
             ];
     

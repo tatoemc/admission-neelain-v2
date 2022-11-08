@@ -65,7 +65,7 @@ class DocController extends Controller
     public function destroy(Request $request)
     {
        
-
+        try {
         $doc = Doc::where('id', $request->doc_id)->first();
         $doc->delete();
         $students = Student::where('doc_id', $request->doc_id)->get();
@@ -74,6 +74,11 @@ class DocController extends Controller
                     $student->delete();
                 } 
         return redirect('/docs');
+           }
+    
+         catch (\Exception $e){
+         return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+         }
 
     }
     public function get_file($id)

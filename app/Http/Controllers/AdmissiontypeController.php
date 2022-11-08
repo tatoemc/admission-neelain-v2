@@ -67,11 +67,18 @@ class AdmissiontypeController extends Controller
 
     public function destroy(Request $request)
     {
+        try {
         $admissiontype = Admissiontype::where('id', $request->admissiontype_id)->first();
         $admissiontype->delete();
 
         session()->flash('delete_admissiontype');
         return redirect('/admissiontypes');
+        }
+        catch (\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+             }
+             
+
     }
 
 

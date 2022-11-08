@@ -32,47 +32,176 @@ class ReportsController extends Controller
 
     public function GetReportResult(Request $request)
     { 
-        if ($request->dept == 'all')
-        {
-            try {
+        
+        //dd($request->all());
+        
+        try {
+            $faculty_id = $request->faculty_id;
+            $dept_id = $request->dept;
+            $admissiontype_id = $request->admissiontype_id;
+            $degree_id = $request->degree_id;
+            $year = $request->year;
 
-                $faculty_id = $request->faculty_id;
-                $admissiontype_id = $request->admissiontype_id;
-                $degree_id = $request->degree_id;
-                $students = Student::Where('faculty_id',$faculty_id)
-                ->Where('admissiontype_id',$admissiontype_id)
+
+            if ($request->dept == "0")
+        {
+            if($request->admissiontype_id == "0" && $request->degree_id == "0" && $request->year == "0")
+            {
+                $students = Student::where('faculty_id',$faculty_id)
+                //->where('ENTS',$request->year)
+                //->where('admissiontype_id',$admissiontype_id)
+                //->where('degree_id',$degree_id)
                 ->get();
-               
-                 }
-            
-                  catch (\Exception $e){
-                  return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-                  }
+            }
+            elseif ($request->admissiontype_id == "0" && $request->degree_id == "0")
+             {
+
+                $students = Student::where('faculty_id',$faculty_id)
+                ->where('ENTS',$request->year)
+                //->where('admissiontype_id',$admissiontype_id)
+                //->where('degree_id',$degree_id)
+                ->get();
+            }
+            elseif ($request->admissiontype_id == "0"  && $request->year == "0")
+             {
+
+                $students = Student::where('faculty_id',$faculty_id)
+                //->where('ENTS',$request->year)
+                //->where('admissiontype_id',$admissiontype_id)
+                ->where('degree_id',$degree_id)
+                ->get();
+            }
+            elseif ( $request->degree_id == "0" && $request->year == "0")
+             {
+
+                $students = Student::where('faculty_id',$faculty_id)
+                //->where('ENTS',$request->year)
+                ->where('admissiontype_id',$admissiontype_id)
+               // ->where('degree_id',$degree_id)
+                ->get();
+            }
+            elseif ( $request->degree_id == "0")
+            {
+
+               $students = Student::where('faculty_id',$faculty_id)
+               //->where('ENTS',$request->year)
+               ->where('admissiontype_id',$admissiontype_id)
+               ->where('degree_id',$degree_id)
+               ->get();
+           }
+           elseif ( $request->admissiontype_id == "0")
+           {
+
+              $students = Student::where('faculty_id',$faculty_id)
+              ->where('ENTS',$request->year)
+              //->where('admissiontype_id',$admissiontype_id)
+              ->where('degree_id',$degree_id)
+              ->get();
+          }
+          elseif ( $request->year == "0")
+           {
+
+              $students = Student::where('faculty_id',$faculty_id)
+              //->where('ENTS',$request->year)
+              ->where('admissiontype_id',$admissiontype_id)
+              ->where('degree_id',$degree_id)
+              ->get();
+          }
         }
         else
-        {
 
-            try {
-
-                $faculty_id = $request->faculty_id;
-                $dept_id = $request->dept;
-                $admissiontype_id = $request->admissiontype_id;
-                $degree_id = $request->degree_id;
-                $students = Student::Where('faculty_id',$faculty_id)
-                ->Where('dept_id',$dept_id)
+        {   
+           
+            if($request->admissiontype_id == "0" && $request->degree_id == "0" && $request->year == "0")
+            {
+                $students = Student::where('faculty_id',$faculty_id)
+                //->where('ENTS',$request->year)
+                 ->where('dept_id',$dept_id)
+                //->where('degree_id',$degree_id)
                 ->get();
-               
-                 } //end of try
-            
-                  catch (\Exception $e){
-                  return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-                  }
+            }
+            elseif ($request->admissiontype_id == "0" && $request->degree_id == "0")
+             {
+
+                $students = Student::where('faculty_id',$faculty_id)
+                ->where('ENTS',$request->year)
+                 ->where('dept_id',$dept_id)
+                //->where('degree_id',$degree_id)
+                ->get();
+            }
+            elseif ($request->admissiontype_id == "0"  && $request->year == "0")
+             {
+
+                $students = Student::where('faculty_id',$faculty_id)
+                //->where('ENTS',$request->year)
+                ->where('dept_id',$dept_id)
+                ->where('degree_id',$degree_id)
+                ->get();
+            }
+            elseif ( $request->degree_id == "0" && $request->year == "0")
+             {
+
+                $students = Student::where('faculty_id',$faculty_id)
+                 ->where('dept_id',$dept_id)
+                ->where('admissiontype_id',$admissiontype_id)
+               // ->where('degree_id',$degree_id)
+                ->get();
+            }
+            elseif ( $request->degree_id == "0")
+            {
+
+               $students = Student::where('faculty_id',$faculty_id)
+                ->where('dept_id',$dept_id)
+               ->where('admissiontype_id',$admissiontype_id)
+               ->where('degree_id',$degree_id)
+               ->get();
+           }
+           elseif ( $request->admissiontype_id == "0")
+           {
+
+              $students = Student::where('faculty_id',$faculty_id)
+              ->where('dept_id',$dept_id)
+              ->where('ENTS',$request->year)
+              ->where('degree_id',$degree_id)
+              ->get();
+          }
+          elseif ( $request->year == "0")
+           {
+
+              $students = Student::where('faculty_id',$faculty_id)
+              ->where('dept_id',$dept_id)
+              ->where('admissiontype_id',$admissiontype_id)
+              ->where('degree_id',$degree_id)
+              ->get();
+          }
+          else
+          {
+            $students = Student::where('faculty_id',$faculty_id)
+            ->where('dept_id',$dept_id)
+            ->where('admissiontype_id',$admissiontype_id)
+            ->where('degree_id',$degree_id)
+            ->where('ENTS',$year)
+            ->get();
+          }
 
         }
-        
-        
 
-        return view ('reports.GetReportResult',compact('students'));
+
+
+            $faculty = Faculty::where('id',$faculty_id)->first();
+        $dept = Dept::where('id',$dept_id)->first();
+        $admissiontype = Admissiontype::where('id',$admissiontype_id)->first(); 
+        $degree = Degree::where('id',$degree_id)->first();
+        
+        return view ('reports.GetReportResult',compact('students','faculty','dept','admissiontype','degree','year'));
+
+            }//End of Try
+    
+        catch (\Exception $e){
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+         }//End of catch
+
+        
 
     }
 
@@ -89,7 +218,7 @@ class ReportsController extends Controller
 
     public function GetFacultiesResult(Request $request)
     { 
-        //dd($request->all());
+        
         try {
 
         $faculty_id = $request->faculty_id;

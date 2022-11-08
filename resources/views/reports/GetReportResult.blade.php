@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('css')
+ 
     <!-- Internal Nice-select css  -->
-    
     <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
 @section('title')
@@ -25,17 +25,7 @@
 @section('content')
 <!-- row -->
 <div class="row">
-    @if (session()->has('Add_user'))
-        <script>
-            window.onload = function() {
-                notif({
-                    msg: "تم الاضافة المستخدم بنجاح",
-                    type: "success"
-                })
-            }
-        </script>
-    @endif
-
+  
     <div class="col-lg-12 col-md-12">
 
         @if ($errors->any())
@@ -52,19 +42,52 @@
             <div class="card-body">
                 <div class="col-lg-12 margin-tb">
                     <div class="card-header bg-black"><button class="btn btn-primary  float-right mt-3 mr-2" id="print_Button" onclick="printData()"> <i class="mdi mdi-printer ml-1"></i>طباعة</button></div>
-                </div><br><br> <br>
-                
+                <br>
                 @if ($students->count() > 0)
+                
+                <br><br>
                 <div class="table-responsive hoverable-table" id="printTable">
-                    <table class="table table-hover" id="example1" data-page-length='50' style=" text-align: center;">
+                <table dir="rtl"  class="table table-bordered ">
+                    <tbody>
+                        <tr>
+                            @if (isset($faculty))
+                            <td><span style="font-weight:bold"> الكلية : </span></td>
+                            <td>{{$faculty->name}}</td>
+                            @endif
+                            @if (isset($dept))
+                            <td><span style="font-weight:bold"> القسم : </span></td>
+                            <td>{{$dept->name}}</td>
+                            @endif
+                            @if (isset($year))
+                            <td><span style="font-weight:bold"> العام : </span></td>
+                            <td>{{$year}}</td>
+                            @endif
+                        </tr>
+                        <tr>
+                            @if (isset($admissiontype))
+                            <td><span style="font-weight:bold"> نوع القبول :</span></td>
+                            <td>{{$admissiontype->name}}</td>
+                            @endif
+                            @if (isset($degree))
+                            <td><span style="font-weight:bold"> البرنامج :</span></td>
+                            <td>{{$degree->name}}</td>
+                            @endif
+                           
+                            <td><span style="font-weight:bold"> عدد الطلاب :</span></td>
+                            <td>({{$students->count()}})</td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+                <br><br><br>
+                    <table dir="rtl"  border="1" class="table table-hover table-bordered" style=" text-align: center;">
                         <thead>
                             <tr>
                                 <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">الرقم الجامعي</th>
-                                    <th class="border-bottom-0">الأسم الاول</th>
-                                    <th class="border-bottom-0">الأسم الثاني</th>
-                                    <th class="border-bottom-0">الأسم الاوسط</th>
-                                    <th class="border-bottom-0">الأسم الاخير</th>
+                                    <th class="border-bottom-0">الأسم </th>
+                                    <th class="border-bottom-0">نوع القبول</th>
+                                    <th class="border-bottom-0">البرنامج</th>
                                     <th class="border-bottom-0">عام القبول</th>
                                     <th class="border-bottom-0">الكلية</th>
                                     <th class="border-bottom-0">القسم</th>
@@ -75,10 +98,10 @@
                                 <tr>
                                     <td>{{  $student->id }}</td>
                                         <td>{{ $student->frmno }} </td>
-                                        <td>{{ $student->N1 }} </td>
-                                        <td>{{ $student->N2 }}</td>
-                                        <td>{{ $student->N3 }}</td>
-                                        <td>{{ $student->N4 }}</td> 
+                                        <td>{{ $student->N1 }} {{ $student->N2 }} {{ $student->N3 }} {{ $student->N4 }} </td>
+                                        
+                                        <td>{{ $student->admissiontype->name }}</td>
+                                        <td>{{ $student->degree->name }}</td>
                                         <td>{{ $student->ENTS }}</td>
                                         <td>{{ $student->faculty->name }}</td>
                                         <td>{{ $student->dept->name }}</td>
@@ -117,8 +140,8 @@
 <script src="{{ URL::asset('assets/plugins/parsleyjs/parsley.min.js') }}"></script>
 <!-- Internal Form-validation js -->
 <script src="{{ URL::asset('assets/js/form-validation.js') }}"></script>
+<!--
 
-<script type="text/javascript">
         
     function printDiv() {
         var printContents = document.getElementById('print').innerHTML;
@@ -128,7 +151,8 @@
         document.body.innerHTML = originalContents;
         location.reload();
     }
-
+-->
+<script type="text/javascript">
     function printData()
 {
    var divToPrint=document.getElementById("printTable");

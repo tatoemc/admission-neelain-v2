@@ -62,10 +62,17 @@ class DegreeController extends Controller
     
     public function destroy(Request $request)
     {
+        try {
         $degree = Degree::where('id', $request->degree_id)->first();
         $degree->delete();
         session()->flash('delete_degree');
         return redirect('/degrees');
+    }
+    
+    catch (\Exception $e){
+    return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+     }
+     
     }
 
 

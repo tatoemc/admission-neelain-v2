@@ -59,49 +59,46 @@
                     {{ csrf_field() }}
                     <div class="">
                         <div class="row row-sm mg-b-20">
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label class="form-label"> <span class="tx-danger">*</span>الكلية</label>
                                 <select class="form-control" name="faculty_id" required>
-                                    <option value="" selected disabled> -- اختيار الكلية--</option>
+                                    <option value="0"> -- اختيار الكلية--</option>
                                     @foreach ($faculties as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label> القسم: </label>
                                 <select class="form-control" name="dept" id="dept">
                                         
                                 </select>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label class="form-label">نوع القبول</label>
-                                <select name="admissiontype_id" id="select-beast"
-                                    class="form-control  nice-select  custom-select">
-                                    <option value="" selected disabled> -- اختيار نوع القبول--</option>
+                                <select name="admissiontype_id"
+                                    class="form-control">
+                                    <option value="0"> -- اختيار نوع القبول--</option>
                                     @foreach ($admissiontypes as $admissiontype)
                                         <option value='{{ $admissiontype->id }}'>{{ $admissiontype->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label class="form-label">البرنامج</label>
-                                <select name="degree_id" id="select-beast"
-                                    class="form-control  nice-select  custom-select">
-                                    <option value="" selected disabled> -- اختيار البرنامج--</option>
+                                <select name="degree_id"
+                                    class="form-control">
+                                    <option value="0"> -- اختيار البرنامج--</option>
                                     @foreach ($degrees as $degree)
                                         <option value='{{ $degree->id }}'>{{ $degree->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <label class="form-label">العام</label>
-                                <select name="degree_id" id="select-beast" class="form-control  nice-select  custom-select">
-                                    <option value="" selected disabled> -- اختيار العام--</option>
-                                    <option value="2021" >2021</option>
-                                    <option value="2022" >2022</option>
-                                    <option value="2020" >2020</option>
+                                <select name="year" id="ddlYears" class="form-control">
+                                    <option value="0"> --الكل--</option>
                                 </select>
                             </div>
                             
@@ -152,7 +149,7 @@
                         console.log(data);
                         $('select[name="dept"]').empty();
                         $('select[name="dept"]')
-                        .append('<option value="all">كل الاقسام</option>');
+                        .append('<option value="0">كل الاقسام</option>');
                         $.each(data, function(key, value) {
                             $('select[name="dept"]')
                             .append('<option value="' + key + '">' + value + '</option>');
@@ -168,23 +165,21 @@
     });
 </script>
 
-<!--
 <script type="text/javascript">
-    window.onload = function () {
+    $(function () {
         //Reference the DropDownList.
-        var ddlYears = document.getElementById("year");
+        var ddlYears = $("#ddlYears");
  
         //Determine the Current Year.
         var currentYear = (new Date()).getFullYear();
  
         //Loop and add the Year values to DropDownList.
-        for (var i = 1950; i <= currentYear; i++) {
-            var option = document.createElement("OPTION");
-            option.innerHTML = i;
-            option.value = i;
-            ddlYears.appendChild(option);
+        for (var i = currentYear ; i >= 1990 ; i--) {
+            var option = $("<option />");
+            option.html(i);
+            option.val(i);
+            ddlYears.append(option);
         }
-    };
+    });
 </script>
-!-->
 @endsection

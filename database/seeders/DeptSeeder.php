@@ -30,7 +30,7 @@ class DeptSeeder extends Seeder
             ['name' => 'الفلسفة','faculty_id'=>'2'],
             ['name' => 'المكتبات والمعلومات ','faculty_id'=>'2'],
             ['name' => 'test','faculty_id'=>'1'],
-            ['name' => 'الجغرافيا','faculty_id'=>'1'],
+            ['name' => 'الجغرافيا','faculty_id'=>'2'],
             ['name' => 'اللغة العربية','faculty_id'=>'2'],
             ['name' => 'التاريخ','faculty_id'=>'2'],
             ['name' => 'علم النفس','faculty_id'=>'2'],

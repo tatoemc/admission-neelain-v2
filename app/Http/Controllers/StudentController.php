@@ -188,6 +188,9 @@ class StudentController extends Controller
     {
        
         //dd($request->all());
+        
+        try {
+            $validated = $request->validated();
         $dept_id = $request->dept;
         $student->update([
             'frmno' => $request->frmno,
@@ -200,8 +203,13 @@ class StudentController extends Controller
             'degree_id' => $request->degree_id,
             'ENTS' => $request->ENTS,
         ]);
-
+        
         return view ('students.show',compact('student'));
+           }
+    
+           catch (\Exception $e){
+           return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+           }
     }
 
   
